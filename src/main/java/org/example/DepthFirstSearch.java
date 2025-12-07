@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*
+*
+* Algoritmo escolhido foi o Depth First Search de buscas/searches.
+*
+*/
+
 /**
  * @author: caos321
  * @date: 31 October 2021 (Sunday)
