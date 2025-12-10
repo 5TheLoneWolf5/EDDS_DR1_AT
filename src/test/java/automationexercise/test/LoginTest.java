@@ -2,8 +2,8 @@ package automationexercise.test;
 
 /*
 *
-* Não houveram falhas nos testes, portanto, não foi capturado screenshots.
-* *
+* Não houveram falhas nos testes, portanto, não foram capturados screenshots.
+*
 */
 
 import automationexercise.core.BaseTest;
