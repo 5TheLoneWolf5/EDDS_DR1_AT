@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
     public void loginComUsuarioCerto(){
         HomePage retorno = new LoginPage(driver)
                 .abrir()
-                .prencherEmail("conta_teste@test.com")
+                .prencherEmail("conta_nova_teste@teste.com")
                 .prencherSenha("12345678")
                 .submeterLoginCerto()
                 .esperarAteLogoutAparecer();

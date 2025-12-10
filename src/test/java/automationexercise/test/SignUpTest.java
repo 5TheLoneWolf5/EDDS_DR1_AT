@@ -2,7 +2,7 @@ package automationexercise.test;
 
 /*
  *
- * Não houveram falhas nos testes, portanto, não foi capturado screenshots.
+ * Não houveram falhas nos testes, portanto, não foram capturados screenshots.
  * *
  */
 
@@ -19,19 +19,22 @@ public class SignUpTest extends BaseTest {
     public void registroComUsuarioCerto(){
         AccountCreatedPage accountCreatedPage = new LoginPage(driver)
                 .abrir()
-                .prencherNomeSignUp("12345678")
+                .prencherNomeSignUp("Adam Stone")
                 .prencherEmailSignUp("conta_nova_teste@teste.com")
                 .submeterSignUp()
-                .marcarTitle()
-                .typePassword()
-                .pickDateOfBirth()
-                .typeFirstName()
-                .typeLastName()
-                .typeAddress()
-                .typeState()
-                .typeCity()
-                .typeZipcode()
-                .submeterSignUp();
-        assertThat(accountCreatedPage.lerContaCriada(), containsString("Account Created!"));
+                .selectTitle("Mr")
+                .typePassword("12345678")
+                .pickDateOfBirth("3", "May", "1998")
+                .typeFirstName("Adam")
+                .typeLastName("Stone")
+                .typeAddress("Times Square N10")
+                .selectCountry("United States")
+                .typeState("New York")
+                .typeCity("New York City")
+                .typeZipcode("8473292553")
+                .typeMobileNumber("5431-3593")
+                .submeterSignUp()
+                .esperarAteAccountCreatedAparecer();
+        assertThat(accountCreatedPage.lerContaCriada(), containsString("ACCOUNT CREATED!"));
     }
 }
