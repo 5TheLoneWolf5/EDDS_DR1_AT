@@ -1,4 +1,37 @@
 package automationexercise.core;
 
-public class BaseTest {
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public abstract class BaseTest {
+    protected WebDriver driver;
+    @BeforeAll
+    static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeEach
+    void setup() {
+        driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
+    private ChromeOptions configurarChrome() {
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        // options.addArguments("--incognito");
+        options.addArguments("--window-size=1280,800");
+        // options.addArguments("--disable-notifications");
+        // options.addArguments("--lang=pt-BR");
+        return options;
+    }
 }
