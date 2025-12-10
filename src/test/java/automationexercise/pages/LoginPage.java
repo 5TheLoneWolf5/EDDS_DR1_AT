@@ -1,4 +1,4 @@
-package automationexercise.pagesLogin;
+package automationexercise.pages;
 
 import automationexercise.core.BasePage;
 import org.openqa.selenium.By;
@@ -11,6 +11,9 @@ public class LoginPage extends BasePage {
     private final By password = By.cssSelector("[data-qa='login-password']");
     private final By btnLogin = By.cssSelector("[data-qa='login-button']");
     private final By error = By.xpath("//p[text()='Your email or password is incorrect!']");
+    private final By signUpEmail =  By.cssSelector("[data-qa='signup-email']");
+    private final By signUpName = By.cssSelector("[data-qa='signup-name']");
+    private final By btnSignUp = By.cssSelector("[data-qa='signup-button']");
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -18,17 +21,22 @@ public class LoginPage extends BasePage {
         driver.get(URL);
         return this;
     }
-    public LoginPage prencherEmail(String usuario) {
-        type(email, usuario);
+    public LoginPage prencherEmail(String _email) {
+        type(email, _email);
         return this;
     }
     public LoginPage prencherSenha(String senha) {
         type(password, senha);
         return this;
     }
-    public LoginPage submeterLogin(){
+    public LoginPage submeterLoginErrado(){
         click(btnLogin);
         return this;
+    }
+
+    public HomePage submeterLoginCerto(){
+        click(btnLogin);
+        return new HomePage(driver);
     }
 
     public String lerErro(){
@@ -39,5 +47,17 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    public LoginPage prencherNomeSignUp(String signUpNome) {
+        type(signUpName, signUpNome);
+        return this;
+    }
+    public LoginPage prencherEmailSignUp(String _signUpEmail) {
+        type(signUpEmail, _signUpEmail);
+        return this;
+    }
+    public SignUpPage submeterSignUp(){
+        click(btnSignUp);
+        return new SignUpPage(driver);
+    }
 
 }

@@ -7,7 +7,8 @@ package automationexercise.test;
 */
 
 import automationexercise.core.BaseTest;
-import automationexercise.pagesLogin.LoginPage;
+import automationexercise.pages.HomePage;
+import automationexercise.pages.LoginPage;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,16 +21,18 @@ public class LoginTest extends BaseTest {
                 .abrir()
                 .prencherEmail("teste@teste.com")
                 .prencherSenha("123456")
-                .submeterLogin()
+                .submeterLoginErrado()
                 .esperarAteAparecerError();
         assertThat(retorno.lerErro(), containsString("Your email or password is incorrect!"));
     }
     @Test
     public void loginComUsuarioCerto(){
-        new LoginPage(driver)
+        HomePage retorno = new LoginPage(driver)
                 .abrir()
-                .prencherEmail("performance_glitch_user")
-                .prencherSenha("secret_sauce")
-                .submeterLogin();
+                .prencherEmail("conta_teste@test.com")
+                .prencherSenha("12345678")
+                .submeterLoginCerto()
+                .esperarAteLogoutAparecer();
+        assertThat(retorno.lerLogout(), containsString("Logout"));
     }
 }
